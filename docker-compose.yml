@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  soap-server:
+    build:
+      context: ./servidor/Soap
+      dockerfile: Dockerfile.soap
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./servidor/wsdl:/app/wsdl
+  rest-server:
+    build:
+      context: ./servidor/Rest
+      dockerfile: Dockerfile.rest
+    ports:
+      - "5000:5000"
+  graphql-server:
+    build:
+      context: ./servidor/Graphql
+      dockerfile: Dockerfile.graphql
+    ports:
+      - "4000:4000"
+  grpc-server:
+    build:
+      context: ./servidor/grpc
+      dockerfile: Dockerfile.grpc
+    ports:
+      - "50051:50051"
+  client:
+    build:
+      context: ./cliente
+      dockerfile: Dockerfile.cliente
+    depends_on:
+      - soap-server
+      - rest-server
+      - graphql-server
+      - grpc-server

@@ -1,0 +1,3 @@
+grpcio
+protobuf
+# Outras dependências específicas para o seu servidor gRPC

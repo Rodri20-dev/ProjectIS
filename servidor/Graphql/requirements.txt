@@ -1,0 +1,3 @@
+graphene
+flask  # Se estiver a usar Flask para o endpoint GraphQL
+# Outras dependências específicas para o seu servidor GraphQL

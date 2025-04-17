@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package usuario;
+
+service ServicoUsuario {
+  rpc CriarUsuario (CriarUsuarioRequest) returns (CriarUsuarioResponse);
+  rpc ObterUsuario (ObterUsuarioRequest) returns (ObterUsuarioResponse);
+  rpc AtualizarUsuario (AtualizarUsuarioRequest) returns (AtualizarUsuarioResponse);
+  rpc ApagarUsuario (ApagarUsuarioRequest) returns (ApagarUsuarioResponse);
+  rpc ExportarUsuarios (ExportarUsuariosRequest) returns (ExportarUsuariosResponse);
+  rpc ImportarUsuarios (ImportarUsuariosRequest) returns (ImportarUsuariosResponse);
+}
+
+message Usuario {
+  string id = 1;
+  string nome = 2;
+  string email = 3;
+}
+
+message CriarUsuarioRequest {
+  string nome = 1;
+  string email = 2;
+}
+
+message CriarUsuarioResponse {
+  string id = 1;
+  string mensagem = 2;
+}
+
+message ObterUsuarioRequest {
+  string id = 1;
+}
+
+message ObterUsuarioResponse {
+  Usuario usuario = 1;
+}
+
+message AtualizarUsuarioRequest {
+  string id = 1;
+  optional string nome = 2;
+  optional string email = 3;
+}
+
+message AtualizarUsuarioResponse {
+  string mensagem = 1;
+}
+
+message ApagarUsuarioRequest {
+  string id = 1;
+}
+
+message ApagarUsuarioResponse {
+  string mensagem = 1;
+}
+
+message ExportarUsuariosRequest {
+  string formato = 1; // "json" ou "xml"
+}
+
+message ExportarUsuariosResponse {
+  string dados = 1;
+}
+
+message ImportarUsuariosRequest {
+  string dados = 1;
+}

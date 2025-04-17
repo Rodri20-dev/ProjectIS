@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:tns="http://tempuri.org/servicos/usuario"
+             targetNamespace="http://tempuri.org/servicos/usuario">
+
+  <types>
+    <xsd:schema targetNamespace="http://tempuri.org/tipos/usuario">
+      <xsd:element name="Usuario">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string"/>
+            <xsd:element name="nome" type="xsd:string"/>
+            <xsd:element name="email" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CriarUsuarioRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="nome" type="xsd:string"/>
+            <xsd:element name="email" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CriarUsuarioResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string"/>
+            <xsd:element name="mensagem" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ObterUsuarioRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ObterUsuarioResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="usuario" type="tns:Usuario" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AtualizarUsuarioRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string"/>
+            <xsd:element name="nome" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="email" type="xsd:string" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AtualizarUsuarioResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="mensagem" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ApagarUsuarioRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ApagarUsuarioResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="mensagem" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ExportarUsuariosResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="xmlData" type="xsd:string" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ImportarUsuariosRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="xmlData" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+
+  <message name="CriarUsuarioRequestMessage">
+    <part name="parameters" element="tns:CriarUsuarioRequest"/>
+  </message>
+  <message name="CriarUsuarioResponseMessage">
+    <part name="parameters" element="tns:CriarUsuarioResponse"/>
+  </message>
+  <message name="ObterUsuarioRequestMessage">
+    <part name="parameters" element="tns:ObterUsuarioRequest"/>
+  </message>
+  <message name="ObterUsuarioResponseMessage">
+    <part name="parameters" element="tns:ObterUsuarioResponse"/>
+  </message>
+  <message name="AtualizarUsuarioRequestMessage">
+    <part name="parameters" element="tns:AtualizarUsuarioRequest"/>
+  </message>
+  <message name="AtualizarUsuarioResponseMessage">
+    <part name="parameters" element="tns:AtualizarUsuarioResponse"/>
+  </message>
+  <message name="ApagarUsuarioRequestMessage">
+    <part name="parameters" element="tns:ApagarUsuarioRequest"/>
+  </message>
+  <message name="ApagarUsuarioResponseMessage">
+    <part name="parameters" element="tns:ApagarUsuarioResponse"/>
+  </message>
+  <message name="ExportarUsuariosResponseMessage">
+    <part name="parameters" element="tns:ExportarUsuariosResponse"/>
+  </message>
+  <message name="ImportarUsuariosRequestMessage">
+    <part name="parameters" element="tns:ImportarUsuariosRequest"/>
+  </message>
+
+  <portType name="UsuarioPortType">
+    <operation name="CriarUsuario">
+      <input message="tns:CriarUsuarioRequestMessage"/>
+      <output message="tns:CriarUsuarioResponseMessage"/>
+    </operation>
+    <operation name="ObterUsuario">
+      <input message="tns:ObterUsuarioRequestMessage"/>
+      <output message="tns:ObterUsuarioResponseMessage"/>
+    </operation>
+    <operation name="AtualizarUsuario">
+      <input message="tns:AtualizarUsuarioRequestMessage"/>
+      <output message="tns:AtualizarUsuarioResponseMessage"/>
+    </operation>
+    <operation name="ApagarUsuario">
+      <input message="tns:ApagarUsuarioRequestMessage"/>
+      <output message="tns:ApagarUsuarioResponseMessage"/>
+    </operation>
+    <operation name="ExportarUsuarios">
+      <output message="tns:ExportarUsuariosResponseMessage"/>
+    </operation>
+    <operation name="ImportarUsuarios">
+      <input message="tns:ImportarUsuariosRequestMessage"/>
+      <output message="tns:CriarUsuarioResponseMessage"/> </operation>
+  </portType>
+
+  <binding name="UsuarioSoapBinding" type="tns:UsuarioPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="CriarUsuario">
+      <soap:operation soapAction="http://tempuri.org/servicos/usuario/CriarUsuario"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="ObterUsuario">
+      <soap:operation soapAction="http://tempuri.org/servicos/usuario/ObterUsuario"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="AtualizarUsuario">
+      <soap:operation soapAction="http://tempuri.org/servicos/usuario/AtualizarUsuario"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="ApagarUsuario">
+      <soap:operation soapAction="http://tempuri.org/servicos/usuario/ApagarUsuario"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="ExportarUsuarios">
+      <soap:operation soapAction="http://tempuri.org/servicos/usuario/ExportarUsuarios"/>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="ImportarUsuarios">
+      <soap:operation soapAction="http://tempuri.org/servicos/usuario/ImportarUsuarios"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+
+  <service name="UsuarioService">
+    <port name="UsuarioPort" binding="tns:UsuarioSoapBinding">
+      <soap:address location="http://localhost:8080/servicos/usuario"/>
+    </port>
+  </service>
+
+</definitions>

@@ -1,0 +1,4 @@
+zeep
+flask  # Se estiver a usar Flask para alguma funcionalidade auxiliar
+lxml   # Pode ser uma dependência do zeep
+# Outras dependências específicas para o seu servidor SOAP

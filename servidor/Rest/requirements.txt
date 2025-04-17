@@ -1,0 +1,4 @@
+flask
+jsonschema
+jsonpath-ng  # Ou outra biblioteca JSONPath que esteja a usar
+# Outras dependências específicas para o seu servidor REST

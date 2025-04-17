@@ -1,0 +1,12 @@
+FROM python:latest
+
+WORKDIR /app
+
+COPY servidor/Rest/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY servidor/Rest/rest_server.py .
+
+EXPOSE 5000
+
+CMD ["python", "rest_server.py"]

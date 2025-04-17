@@ -1,0 +1,13 @@
+FROM python:latest
+
+WORKDIR /app
+
+COPY servidor/Soap/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY servidor/Soap/soap_server.py .
+COPY servidor/wsdl/ ./wsdl/
+
+EXPOSE 8080
+
+CMD ["python", "soap_server.py"]

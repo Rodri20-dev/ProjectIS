@@ -1,0 +1,13 @@
+FROM python:latest
+
+WORKDIR /app
+
+COPY servidor/Graphql/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY servidor/Graphql/graphql_server.py .
+COPY servidor/graphql/ ./graphql/
+
+EXPOSE 4000
+
+CMD ["python", "graphql_server.py"]
