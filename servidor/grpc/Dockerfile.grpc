@@ -2,13 +2,13 @@ FROM python:latest
 
 WORKDIR /app
 
-COPY servidor/grpc/requirements.txt .
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY servidor/grpc/grpc_server.py .
-COPY servidor/grpc/servico.proto ./grpc/
-COPY servidor/grpc/servico_pb2.py .
-COPY servidor/grpc/servico_pb2_grpc.py .
+COPY grpc_server.py .
+COPY servico.proto ./grpc/
+COPY servico_pb2.py .
+COPY servico_pb2_grpc.py .
 
 EXPOSE 50051
 

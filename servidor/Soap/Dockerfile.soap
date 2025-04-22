@@ -2,11 +2,12 @@ FROM python:latest
 
 WORKDIR /app
 
-COPY servidor/Soap/requirements.txt .
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY servidor/Soap/soap_server.py .
-COPY servidor/wsdl/ ./wsdl/
+COPY soap_server.py .
+COPY wsdl/ ./wsdl/
+
 
 EXPOSE 8080
 

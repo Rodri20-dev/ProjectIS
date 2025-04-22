@@ -2,11 +2,11 @@ FROM python:latest
 
 WORKDIR /app
 
-COPY servidor/Graphql/requirements.txt .
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY servidor/Graphql/graphql_server.py .
-COPY servidor/graphql/ ./graphql/
+COPY graphql_server.py .
+#COPY ../graphql/ ./graphql/
 
 EXPOSE 4000
 

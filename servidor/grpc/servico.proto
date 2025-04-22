@@ -2,14 +2,7 @@ syntax = "proto3";
 
 package usuario;
 
-service ServicoUsuario {
-  rpc CriarUsuario (CriarUsuarioRequest) returns (CriarUsuarioResponse);
-  rpc ObterUsuario (ObterUsuarioRequest) returns (ObterUsuarioResponse);
-  rpc AtualizarUsuario (AtualizarUsuarioRequest) returns (AtualizarUsuarioResponse);
-  rpc ApagarUsuario (ApagarUsuarioRequest) returns (ApagarUsuarioResponse);
-  rpc ExportarUsuarios (ExportarUsuariosRequest) returns (ExportarUsuariosResponse);
-  rpc ImportarUsuarios (ImportarUsuariosRequest) returns (ImportarUsuariosResponse);
-}
+
 
 message Usuario {
   string id = 1;
@@ -63,4 +56,17 @@ message ExportarUsuariosResponse {
 
 message ImportarUsuariosRequest {
   string dados = 1;
+}
+
+message ImportarUsuariosResponse {
+  string dados = 1;
+}
+
+service ServicoUsuario {
+  rpc CriarUsuario (CriarUsuarioRequest) returns (CriarUsuarioResponse);
+  rpc ObterUsuario (ObterUsuarioRequest) returns (ObterUsuarioResponse);
+  rpc AtualizarUsuario (AtualizarUsuarioRequest) returns (AtualizarUsuarioResponse);
+  rpc ApagarUsuario (ApagarUsuarioRequest) returns (ApagarUsuarioResponse);
+  rpc ExportarUsuarios (ExportarUsuariosRequest) returns (ExportarUsuariosResponse);
+  rpc ImportarUsuarios (ImportarUsuariosRequest) returns (ImportarUsuariosResponse);
 }
