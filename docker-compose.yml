@@ -1,37 +1,51 @@
 version: '3.8'
+
 services:
-  soap-server:
-    build:
-      context: ./servidor/Soap
-      dockerfile: Dockerfile.soap
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./servidor/wsdl:/app/wsdl
-  rest-server:
-    build:
-      context: ./servidor/Rest
-      dockerfile: Dockerfile.rest
-    ports:
-      - "5000:5000"
-  graphql-server:
+  graphql_server:
     build:
       context: ./servidor/Graphql
       dockerfile: Dockerfile.graphql
     ports:
       - "4000:4000"
-  grpc-server:
+    volumes:
+      - ./servidor/Graphql:/app
+    environment:
+      - FLASK_ENV=development
+
+  rest_server:
     build:
-      context: ./servidor/grpc
-      dockerfile: Dockerfile.grpc
+      context: ./servidor/Rest
+      dockerfile: Dockerfile.rest
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./servidor/Rest:/app
+    environment:
+      - FLASK_ENV=development
+
+  grpc_server:
+    build:
+      context: ./servidor/cliente_grpc
     ports:
       - "50051:50051"
-  client:
+    networks:
+      - cliente
+
+  grpc_client:
+    build:
+      context: ./servidor/cliente_grpc
+    depends_on:
+      - grpc_server
+    networks:
+      - cliente
+
+  cliente:
     build:
       context: ./cliente
       dockerfile: Dockerfile.cliente
-    depends_on:
-      - soap-server
-      - rest-server
-      - graphql-server
-      - grpc-server
+    volumes:
+      - ./cliente:/app
+
+networks:
+  cliente:
+    driver: bridge

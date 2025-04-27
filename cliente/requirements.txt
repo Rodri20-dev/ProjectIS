@@ -1,5 +1,4 @@
 ﻿requests
+graphene
 zeep
-grpcio
-grpcio-tools
-protobuf
+

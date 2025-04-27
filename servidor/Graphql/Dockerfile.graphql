@@ -1,13 +1,18 @@
-FROM python:latest
+# Usar imagem oficial do Python
+FROM python:3.12-slim
 
+# Diretório de trabalho
 WORKDIR /app
 
+# Copiar requirements e instalar
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY graphql_server.py .
-#COPY ../graphql/ ./graphql/
+# Copiar o código
+COPY . .
 
-EXPOSE 4000
+# Expor porta
+EXPOSE 5000
 
+# Comando para arrancar
 CMD ["python", "graphql_server.py"]

@@ -1,4 +1,3 @@
-graphene
-flask  # Se estiver a usar Flask para o endpoint GraphQL
+flask
+graphene>=2.0,<3
 flask-graphql
-# Outras dependências específicas para o seu servidor GraphQL

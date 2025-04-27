@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package cliente_grpc;
+
+// Definição do serviço
+service UserService {
+    rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+    rpc GetUser (GetUserRequest) returns (GetUserResponse);
+}
+
+// Definição das mensagens
+message CreateUserRequest {
+    string nome = 1;
+    string email = 2;
+}
+
+message CreateUserResponse {
+    string id = 1;
+}
+
+message GetUserRequest {
+    string id = 1;
+}
+
+message GetUserResponse {
+    string id = 1;
+    string nome = 2;
+    string email = 3;
+}

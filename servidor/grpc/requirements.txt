@@ -1,4 +1,0 @@
-grpcio
-grpcio-tools
-protobuf
-# Outras dependências do seu servidor gRPC
